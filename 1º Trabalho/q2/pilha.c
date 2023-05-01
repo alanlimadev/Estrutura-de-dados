@@ -79,7 +79,7 @@ int impares(Pilha* p){
 
 //TRABALHO: função que verifique quais são os elementos pares de uma pilha p1 e que os empilhe em ordem crescente em uma pilha p2
 Pilha* empilha_pares(Pilha* p1, Pilha* p2){
-	int i, j, a;
+	int i, a;
 	for(i = p1->n-1; i >= 0; i--){
 		if((p1->v[i] % 2) == 0)
 			pilha_push(p2, p1->v[i]);	
