@@ -6,14 +6,6 @@
 int main (void){
 	setlocale(LC_ALL, "Portuguese");
 	
-//	Lista* l = lst_cria();
-//	l = lst_insere(l,10);
-//	l = lst_insere(l,20);
-//	l = lst_insere(l,25);
-//	l = lst_insere(l,30);
-//	l = lst_remove(l,10);
-//	lst_imprime(l);
-	
 	Lista* l1 = lst_cria();
 	l1 = lst_insere(l1,6);
 	l1 = lst_insere(l1,13);
@@ -36,14 +28,6 @@ int main (void){
 	
 	Lista* l3 = lst_conc(l1,l2);
 	lst_imprime(l3);
-	
-	//teste
-	printf("\n");
-	
-	lst_imprime_invertida_rec(l3);
-	
-	//teste
-	printf("\n");
 	
 	l1=lst_diferenca(l1,l2);
 	lst_imprime(l1);

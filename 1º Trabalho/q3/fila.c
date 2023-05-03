@@ -12,7 +12,6 @@ struct fila{
 	Lista *fim;
 }; 
 
-
 struct pilha{
 	Lista *prim;
 }; 

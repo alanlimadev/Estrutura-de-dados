@@ -79,7 +79,6 @@ void lst_libera(Lista* l){
 	}
 }
 
-
 //Ordenação por Construção em Lista Encadeada
 Lista* lst_insere_ordenado(Lista* l, int info){
 	Lista* lNew = (Lista*)malloc(sizeof(Lista));
