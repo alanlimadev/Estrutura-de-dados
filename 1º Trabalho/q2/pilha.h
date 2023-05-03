@@ -1,4 +1,5 @@
 typedef struct pilha Pilha;
+typedef struct lista Lista;
 
 /*Função que cria uma pilha.*/
 Pilha* pilha_cria(void);
@@ -27,3 +28,13 @@ int impares(Pilha* p);
 
 //função que verifique quais são os elementos pares de uma pilha p1 e que os empilhe em ordem crescente em uma pilha p2
 Pilha* empilha_pares(Pilha* p1, Pilha* p2);
+
+Lista* lst_cria();
+
+Lista* lst_insere_ordenado(Lista* l, int info);
+
+Lista* lst_remove(Lista* l, int info);
+
+void lst_libera(Lista* l);
+
+void lst_imprime(Lista* l);

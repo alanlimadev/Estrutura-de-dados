@@ -30,7 +30,6 @@ int main (void){
 	
 	system("PAUSE");
 	return 0;
-	
 }
 
 	

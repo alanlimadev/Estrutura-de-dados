@@ -3,6 +3,11 @@
 #include "pilha.h"
 #define MAX 5
 
+struct lista {
+	int info;
+	Lista* prox;
+};
+
 typedef struct pilha{
 	int n;
 	int v[MAX];
@@ -79,12 +84,89 @@ int impares(Pilha* p){
 
 //TRABALHO: função que verifique quais são os elementos pares de uma pilha p1 e que os empilhe em ordem crescente em uma pilha p2
 Pilha* empilha_pares(Pilha* p1, Pilha* p2){
-	int i, a;
-	for(i = p1->n-1; i >= 0; i--){
-		if((p1->v[i] % 2) == 0)
-			pilha_push(p2, p1->v[i]);	
+	int i;
+	Lista* lAux = lst_cria();
+	Pilha* p01 = p1;
+	
+	for(i = p01->n-1; i >= 0; i--){
+		if((p01->v[i] % 2) == 0)
+			lAux = lst_insere_ordenado(lAux, p01->v[i]);
+	}	
+	while(lAux != NULL){
+		pilha_push(p2, lAux->info);
+		lAux = lAux->prox;
 	}
-	
-	
 	return p2;
 }
+
+/* Cria uma lista vazia.*/
+Lista* lst_cria(){
+	return NULL;
+}
+
+//Ordenação por Construção em Lista Encadeada
+Lista* lst_insere_ordenado(Lista* l, int info){
+	Lista* lNew = (Lista*)malloc(sizeof(Lista));
+	lNew->info = info;
+	if(l==NULL){
+			lNew->prox = NULL;
+			return lNew;
+	}else if(l->info>=info){
+			lNew->prox = l;
+			return lNew;
+	}else{
+		Lista* lAnt = l;
+		Lista* lProx = l->prox; 
+		while(lProx!=NULL&&lProx->info<info){
+			lAnt = lProx;
+			lProx = lProx->prox;
+		}
+		lAnt->prox = lNew;
+		lNew->prox = lProx;
+		return l;
+	}
+}
+
+Lista* lst_remove(Lista* l, int info){
+	if(l!=NULL){
+		Lista* lAux = l->prox;
+		if(l->info==info){
+			free(l);
+			return lAux;
+		}
+		else{
+			Lista* lAnt = l;
+			while(lAux!=NULL ){
+				if(lAux->info == info){
+					lAnt->prox = lAux->prox;
+					free(lAux);
+					break;
+				}else{
+					lAnt = lAux;
+					lAux = lAux->prox;
+				}
+			}
+		}
+	}
+	return l;
+}
+
+/* Libera o espaço alocado por uma lista.*/
+void lst_libera(Lista* l){
+	Lista* lProx;
+	while(l!=NULL){
+		lProx = l->prox;
+		free(l);
+		l = lProx;
+	}
+}
+
+/* Imprime uma lista.*/
+void lst_imprime(Lista* l){
+	Lista* lAux = l;
+	while(lAux!=NULL){
+		printf("Info = %d\n",lAux->info);
+		lAux = lAux->prox;
+	}
+}
+

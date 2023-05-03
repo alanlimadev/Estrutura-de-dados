@@ -16,10 +16,10 @@ int main(void){
 	
 	Fila* f2=inverte(f1);
 	fila_imprime(f2);
-	
-	qtd=qtd_maior(f1,13);
-	printf("Núm. de elem. maiores que 13 em f1: %d\n",qtd);
-	printf("Qtd. elem. pares na fila f1: %d\n",pares(f1));
+//	
+//	qtd=qtd_maior(f1,13);
+//	printf("Núm. de elem. maiores que 13 em f1: %d\n",qtd);
+//	printf("Qtd. elem. pares na fila f1: %d\n",pares(f1));
 	
 	fila_libera(f1);
 	fila_libera(f2);
