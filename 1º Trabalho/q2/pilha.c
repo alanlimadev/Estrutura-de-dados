@@ -85,12 +85,6 @@ Pilha* empilha_pares(Pilha* p1, Pilha* p2){
 			pilha_push(p2, p1->v[i]);	
 	}
 	
-	for(i = p2->n-1; i > 0; i--){
-		while(p2->v[i] < p2->v[i-1] && (p2->v[i-1] % 2) == 0){
-			a = p2->v[i];
-			p2->v[i] = p2->v[i-1];
-			p2->v[i-1] = a;
-		}
-	}
+	
 	return p2;
 }

@@ -1,6 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
-#include“fila.h”
+#include"fila.h"
 
 Fila* fila_cria(void){
 	Fila *f = (Fila*)malloc(sizeof(Fila));
@@ -11,6 +11,10 @@ Fila* fila_cria(void){
 	f->ini = NULL;
 	f->fim = NULL;
 	return f;
+}
+
+int fila_vazia(Fila *f){
+	return f->ini==NULL;
 }
 
 void fila_insere(Fila *f, int info){
@@ -28,9 +32,6 @@ void fila_insere(Fila *f, int info){
 	f->fim = l;
 }
 
-int fila_vazia(Fila *f){
-	return f->ini==NULL;
-}
 int fila_remove(Fila *f){
 	Lista *l; int a;
 	if(fila_vazia(f)){
@@ -67,8 +68,17 @@ void fila_libera(Fila *f){
 	free(f);
 }
 
+//TRABALHO: função para retornar o número de elementos da fila com valor maior que n.
+int qtd_maior(Fila* f, int n){
+	
+}
 
+//TRABALHO: função que crie uma fila com os elementos da fila f na ordem inversa.
+Fila* inverte(Fila* f){
+	
+}
 
-
-
-
+//TRABALHO: função para retornar o número de elementos da fila que possuem o campo info com valor par. 
+int pares(Fila* f){
+	
+}

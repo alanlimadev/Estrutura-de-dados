@@ -6,7 +6,6 @@ struct lista{
 	int info;
 	Lista *prox;
 };
-
 struct fila{
 	Lista *ini;
 	Lista *fim;
@@ -31,3 +30,12 @@ void fila_imprime(Fila *f);
 
 /*Libera o espaço alocado para uma Fila.*/
 void fila_libera(Fila *f);
+
+//TRABALHO: função para retornar o número de elementos da fila com valor maior que n.
+int qtd_maior(Fila* f, int n);
+
+//TRABALHO: função que crie uma fila com os elementos da fila f na ordem inversa.
+Fila* inverte(Fila* f);
+
+//TRABALHO: função para retornar o número de elementos da fila que possuem o campo info com valor par. 
+int pares(Fila* f);

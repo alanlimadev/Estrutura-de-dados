@@ -21,22 +21,39 @@ Lista* lst_remove(Lista *l, int info);
 /* Libera o espaço alocado por uma lista.*/
 void lst_libera(Lista *l);
 
-//TRABALHO
-//função que calcule o número de nós de uma lista.
+//Ordenação por Construção em Lista Encadeada
+Lista* lst_insere_ordenado(Lista* l, int info);
+
+//Implementação Recursiva: Função Imprime Lista
+void lst_imprime_rec(Lista* l);
+
+//Implementação Recursiva: Função Imprime Lista Invertida
+void lst_imprime_invertida_rec(Lista* l);
+
+//Implementação Recursiva: Função Remove Elemento Lista
+Lista* lst_remove_rec(Lista* l, int info);
+
+//Implementação Recursiva: Função Libera Lista
+void lst_libera_rec(Lista *l);
+
+//Implementação Recursiva: Função Igualdade Entre Listas
+int lst_igual_rec(Lista *l1,Lista *l2);
+
+//TRABALHO: função que calcule o número de nós de uma lista.
 int comprimento(Lista* l);
 
-//função para retornar o número de nós da lista que possuem o campo info com valor menor que n.
+//TRABALHO: função para retornar o número de nós da lista que possuem o campo info com valor menor que n.
 int menores(Lista* l, int n);
 
-//função para somar os valores do campo info de todos os nós.
+//TRABALHO: função para somar os valores do campo info de todos os nós.
 int soma(Lista* l);
 
-//função para retornar o número de nós da lista que possuem o campo info com número primo.
+//TRABALHO: função para retornar o número de nós da lista que possuem o campo info com número primo.
 int primos(Lista* l);
 
-//função para criar uma lista que é a concatenação de uma lista l2 no final de uma lista l1.
+//TRABALHO: função para criar uma lista que é a concatenação de uma lista l2 no final de uma lista l1.
 Lista* lst_conc(Lista* l1, Lista* l2);
 
-//função que faça a diferença de duas listas L1 e L2 (ou seja, que retire de L1 os elementos que estão em L2).
+//TRABALHO: função que faça a diferença de duas listas L1 e L2 (ou seja, que retire de L1 os elementos que estão em L2).
 Lista* lst_diferenca(Lista* l1, Lista* l2);
 
