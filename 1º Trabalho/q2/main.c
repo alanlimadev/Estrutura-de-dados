@@ -4,7 +4,6 @@
 #include "pilha.h"
 
 int main (void){
-	
 	setlocale(LC_ALL, "Portuguese");
 	
 	int a;
