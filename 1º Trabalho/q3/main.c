@@ -11,15 +11,16 @@ int main(void){
 	fila_insere(f1,14);
 	fila_insere(f1,15);
 	a = fila_remove(f1);
-	printf("Valor removido da fila f1: %d\n",a);
+	printf("Valor removido da fila f1: %d\n", a);
 	fila_imprime(f1);
 	
-	Fila* f2=inverte(f1);
+	Fila* f2 = inverte(f1);
 	fila_imprime(f2);
-//	
-//	qtd=qtd_maior(f1,13);
-//	printf("Núm. de elem. maiores que 13 em f1: %d\n",qtd);
-//	printf("Qtd. elem. pares na fila f1: %d\n",pares(f1));
+	
+	qtd=qtd_maior(f1,13);
+	printf("Núm. de elem. maiores que 13 em f1: %d\n",qtd);
+	
+	printf("Qtd. elem. pares na fila f1: %d\n", pares(f1));
 	
 	fila_libera(f1);
 	fila_libera(f2);

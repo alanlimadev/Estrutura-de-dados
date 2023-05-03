@@ -2,14 +2,7 @@ typedef struct lista Lista;
 
 typedef struct fila Fila;
 
-struct lista{
-	int info;
-	Lista *prox;
-};
-struct fila{
-	Lista *ini;
-	Lista *fim;
-};
+typedef struct pilha Pilha;
 
 //typedef struct fila Fila;
 
@@ -39,3 +32,12 @@ Fila* inverte(Fila* f);
 
 //TRABALHO: função para retornar o número de elementos da fila que possuem o campo info com valor par. 
 int pares(Fila* f);
+
+/*Testa se uma pilha é vazia.*/
+int pilha_vazia(Pilha *p);
+
+/*Função que adiciona um elemento no topo de uma pilha.*/
+void pilha_push(Pilha* p, int info);
+
+/*Função que imprime os elementos de uma pilha.*/
+void pilha_imprime(Pilha *p);
