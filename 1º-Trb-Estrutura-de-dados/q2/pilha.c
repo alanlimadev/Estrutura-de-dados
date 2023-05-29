@@ -3,101 +3,112 @@
 #include "pilha.h"
 #define MAX 5
 
-struct lista {
+struct lista{
 	int info;
-	Lista* prox;
+	Lista *prox; 
 };
-
-typedef struct pilha{
-	int n;
-	int v[MAX];
-}Pilha;
+struct pilha{
+	Lista *prim;
+}; 
 
 Pilha* pilha_cria(void){
-	Pilha* p = (Pilha*)malloc(sizeof(Pilha));
-	if(p == NULL){
+	Pilha *p = (Pilha*)malloc(sizeof(Pilha));
+	if(p==NULL){
 		printf("Memoria insuficiente!!!\n");
 		exit(1);
 	}
-	p->n = 0;
+	p->prim = NULL;
 	return p;
-}
-
-/*Testa se uma pilha é vazia.*/
-int pilha_vazia(Pilha *p){
-	return p->n == 0;
 }
 
 /*Função que adiciona um elemento no topo de uma pilha.*/
 void pilha_push(Pilha *p, int info){
-	if(p->n == MAX){
-		printf("Capacidade da Pilha Estourou!!!\n");
+	Lista *l = (Lista*)malloc(sizeof(Lista));
+	if(l==NULL){
+		printf("Memoria insuficiente!!!\n");
 		exit(1);
 	}
-	p->v[p->n] = info;
-	p->n = p->n + 1;
+	l->info = info;
+	l->prox = p->prim;
+	p->prim = l;
+}
+
+/*Testa se uma pilha é vazia.*/
+int pilha_vazia(Pilha *p){
+	return p->prim==NULL;
 }
 
 /*Função que remove um elemento do topo de uma pilha.*/
-int pilha_pop(Pilha* p){
+int pilha_pop(Pilha *p){
 	int a;
+	Lista *l;
 	if(pilha_vazia(p)){
 		printf("Pilha Vazia!!!\n");
-		exit(1);
+		exit(1); 
 	}
-	a = p->v[p->n-1];
-	p->n--;
+	l = p->prim;
+	a = l->info;
+	p->prim = l->prox;
+	free(l);
 	return a;
 }
 
 /*Função que imprime os elementos de uma pilha.*/
-void pilha_imprime(Pilha* p){
-	int i;
-	for(i = p->n-1; i >= 0; i--){
-		printf("%d\n", p->v[i]);
+void pilha_imprime(Pilha *p){
+	Lista *lAux = p->prim;
+	while(lAux!=NULL){
+		printf("%d\n",lAux->info);
+		lAux = lAux->prox;
 	}
 }
 
 /*Libera o espaço alocado para uma pilha.*/
-void pilha_libera(Pilha* p){
+void pilha_libera(Pilha *p){
+	Lista* l = p->prim;
+	Lista* lAux;	
+	while(l!=NULL){
+		lAux = l->prox;
+		free(l);
+		l = lAux;
+	}
 	free(p);
 }
 
 //TRABALHO: função que receba uma pilha como argumento e retorne o valor armazenado em seu topo.
-int topo(Pilha* p){
-	if(pilha_vazia(p)){
-		printf("Pilha Vazia!!!\n");
-		exit(1);
-	}
-	return p->v[p->n-1];	
-}
+//int topo(Pilha* p){
+//	if(pilha_vazia(p)){
+//		printf("Pilha Vazia!!!\n");
+//		exit(1);
+//	}
+//	return p->v[p->n-1];	
+//}
 
 //TRABALHO: função que retorne o número de elementos da pilha que possuem o campo info com valor ímpar
-int impares(Pilha* p){
-	int i, cont = 0;
-	for(i = p->n-1; i >= 0; i--){
-		if((p->v[i] % 2) != 0)
-			cont++;		
-	}
-	return cont;
-}
+//int impares(Pilha* p){
+//	int i, cont = 0;
+//	for(i = p->n-1; i >= 0; i--){
+//		if((p->v[i] % 2) != 0)
+//			cont++;		
+//	}
+//	return cont;
+//}
 
 //TRABALHO: função que verifique quais são os elementos pares de uma pilha p1 e que os empilhe em ordem crescente em uma pilha p2
-Pilha* empilha_pares(Pilha* p1, Pilha* p2){
-	int i;
-	Lista* lAux = lst_cria();
-	Pilha* p01 = p1;
-	
-	for(i = p01->n-1; i >= 0; i--){
-		if((p01->v[i] % 2) == 0)
-			lAux = lst_insere_ordenado(lAux, p01->v[i]);
-	}	
-	while(lAux != NULL){
-		pilha_push(p2, lAux->info);
-		lAux = lAux->prox;
-	}
-	return p2;
-}
+//Pilha* empilha_pares(Pilha* p1, Pilha* p2){
+//	int i;
+//	Lista* lAux = lst_cria();
+//	Pilha* p01 = p1;
+//	
+//	for(i = p01->n-1; i >= 0; i--){
+//		if((p01->v[i] % 2) == 0)
+//			lAux = lst_insere_ordenado(lAux, p01->v[i]);
+//	}	
+//	while(lAux != NULL){
+//		pilha_push(p2, lAux->info);
+//		lAux = lAux->prox;
+//	}
+//	return p2;
+//}
 
 /* Cria uma lista vazia.*/
 Lista* lst_cria(){
@@ -170,3 +181,24 @@ void lst_imprime(Lista* l){
 	}
 }
 
+pilha_push_menor(Pilha* p, int info){
+	Lista* l = (Lista*)malloc(sizeof(Lista));
+	l->info = info;
+	l->prox = NULL;
+	if(p->prim == NULL){
+		p->prim = l;
+	}else if(info < p->prim){
+		l->prox = p->prim;
+		p->prim = l;
+	}
+}
+
+int pilha_soma(Pilha* p){
+	Lista* l = p->prim;
+	int cont = 0;
+	while(l != NULL){
+		cont += l->info;
+		l = l->prox;
+	}
+	return cont;
+}

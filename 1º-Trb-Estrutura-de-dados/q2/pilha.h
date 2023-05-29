@@ -38,3 +38,8 @@ Lista* lst_remove(Lista* l, int info);
 void lst_libera(Lista* l);
 
 void lst_imprime(Lista* l);
+
+//testes
+pilha_push_menor(Pilha* p, int info);
+
+int pilha_soma(Pilha* p);

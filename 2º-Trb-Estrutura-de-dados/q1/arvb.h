@@ -1,0 +1,36 @@
+typedef struct arvb ArvB;
+
+typedef struct arv Arv;
+
+/*Função que cria uma Árvore Binária de Busca Vazia.*/
+ArvB* arvb_cria_vazia(void);
+
+/*Testa se uma Árvore Binária é vazia.*/
+int arvb_vazia(ArvB *a);
+
+/*Função que busca a sub-árvore que contém um inteiro.*/
+ArvB* arvb_busca(ArvB *a,int c);
+
+/*Função que imprime os elementos de uma Árvore.*/
+void arvb_imprime(ArvB *a);
+
+/*Função que insere um inteiro em uma Árvore.*/
+ArvB* arvb_insere(ArvB *a, int c); 
+
+/*Função que remove um inteiro em uma Árvore.*/
+ArvB* arvb_remove(ArvB *a, int c); 
+
+/*Libera o espaço alocado para uma Árvore.*/
+void arvb_libera(ArvB *a);
+
+//TRABALHO: função que retorne a quantidade de folhas que possuem no campo info um número primo.
+int folhas_primos(ArvB* a);
+
+//TRABALHO: função que retorne a quantidade de nós que possuem os dois filhos (campos dir e esq diferentes de NULL).
+int dois_filhos(ArvB* a);
+
+//TRABALHO: função que retorne a quantidade de nós cujas subárvores esquerda e direita não são vazias e têm igual altura.
+int nos_igual_altura(ArvB* a);
+
+//TRABALHO: função que compare se duas árvores binárias de busca são iguais.
+int iguais(ArvB* a, ArvB* b);
