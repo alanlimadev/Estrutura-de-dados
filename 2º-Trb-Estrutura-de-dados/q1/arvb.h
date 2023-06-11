@@ -1,7 +1,5 @@
 typedef struct arvb ArvB;
 
-typedef struct arv Arv;
-
 /*Função que cria uma Árvore Binária de Busca Vazia.*/
 ArvB* arvb_cria_vazia(void);
 
@@ -22,6 +20,12 @@ ArvB* arvb_remove(ArvB *a, int c);
 
 /*Libera o espaço alocado para uma Árvore.*/
 void arvb_libera(ArvB *a);
+
+int arv_altura(ArvB *a);
+
+bool ehPrimo(int numero);
+
+int contarFolhasPrimos(ArvB* a);
 
 //TRABALHO: função que retorne a quantidade de folhas que possuem no campo info um número primo.
 int folhas_primos(ArvB* a);

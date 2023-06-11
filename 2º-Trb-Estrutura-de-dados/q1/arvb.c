@@ -1,33 +1,34 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include "arvb.h"
 
-typedef struct arvb{
+struct arvb{
 	char info;
-	Arv *esq;
-	Arv *dir;
-}ArvB;
-
-struct arv{
-	char info;
-	Arv *esq;
-	Arv *dir;
+	ArvB *esq;
+	ArvB *dir;
 };
 
+/*Função que cria uma Árvore Binária de Busca Vazia.*/
 ArvB* arvb_cria_vazia(void){
 	return NULL;
 }
 
+/*Testa se uma Árvore Binária é vazia.*/
 int arvb_vazia(ArvB *a){
 	return a==NULL;
 }
 
-//int arv_pertence(Arv *a,char c){
-//	if(arv_vazia(a))
-//		return 0;
-//	else
-//		return a->info ==c || arv_pertence(a->esq,c) || arv_pertence(a->dir,c);
-//}
+ArvB* arvb_busca(ArvB *a, int c){
+	if(arvb_vazia(a))
+		return NULL;
+	else if(a->info < c)
+		return arvb_busca(a->dir,c);
+	else if(a->info > c)
+		return arvb_busca(a->esq,c);
+	else //(a->info == c)
+		return a;
+}
 
 void arvb_imprime(ArvB *a){
 	if(!arvb_vazia(a)){
@@ -63,7 +64,7 @@ ArvB* arvb_remove(ArvB *a, int c){
 			if (a->esq == NULL){
 				t = a; a = a->dir;
 				free(t);
-			}else if (a->dir == NULL){
+				}else if (a->dir == NULL){
 				t = a; a = a->esq;
 				free(t);
 			}else{
@@ -78,6 +79,7 @@ ArvB* arvb_remove(ArvB *a, int c){
 	return a; 
 }
 
+/*Libera o espaço alocado para uma Árvore.*/
 void arvb_libera(ArvB *a){
 	if(!arvb_vazia(a)){
 		arvb_libera(a->esq);
@@ -86,9 +88,41 @@ void arvb_libera(ArvB *a){
 	}
 }
 
+int arv_altura(ArvB *a){
+	if(arvb_vazia(a))
+	 	return -1;
+	else{
+		int hSAE = arv_altura(a->esq);
+		int hSAD = arv_altura(a->dir);
+		if(hSAE > hSAD) 
+			return 1+hSAE;
+		else
+			return 1+hSAD;
+	}
+}
+
+bool ehPrimo(int numero) {
+    if (numero <= 1)
+        return false;
+
+    for (int i = 2; i * i <= numero; i++) {
+        if (numero % i == 0)
+            return false;
+    }
+
+    return true;
+}
+
 //TRABALHO: função que retorne a quantidade de folhas que possuem no campo info um número primo.
-int folhas_primos(ArvB* a){
-	
+int folhas_primos(ArvB* a) {
+    static int contPrimos = 0;
+    if(!arvb_vazia(a)){
+    	folhas_primos(a->esq);
+    	if(ehPrimo(a->info))
+    		contPrimos++;
+    	folhas_primos(a->dir);
+	}
+    return contPrimos;
 }
 
 //TRABALHO: função que retorne a quantidade de nós que possuem os dois filhos (campos dir e esq diferentes de NULL).
