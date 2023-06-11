@@ -127,7 +127,14 @@ int folhas_primos(ArvB* a) {
 
 //TRABALHO: função que retorne a quantidade de nós que possuem os dois filhos (campos dir e esq diferentes de NULL).
 int dois_filhos(ArvB* a){
-	
+	static int contNos = 0;
+    if(!arvb_vazia(a)){
+    	dois_filhos(a->esq);
+    	if(a->dir!=NULL && a->esq!=NULL)
+    		contNos++;
+    	dois_filhos(a->dir);
+	}
+    return contNos;
 }
 
 //TRABALHO: função que retorne a quantidade de nós cujas subárvores esquerda e direita não são vazias e têm igual altura.
