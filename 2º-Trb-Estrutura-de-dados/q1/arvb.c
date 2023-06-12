@@ -104,12 +104,10 @@ int arv_altura(ArvB *a){
 bool ehPrimo(int numero) {
     if (numero <= 1)
         return false;
-
     for (int i = 2; i * i <= numero; i++) {
         if (numero % i == 0)
             return false;
     }
-
     return true;
 }
 
@@ -139,10 +137,24 @@ int dois_filhos(ArvB* a){
 
 //TRABALHO: função que retorne a quantidade de nós cujas subárvores esquerda e direita não são vazias e têm igual altura.
 int nos_igual_altura(ArvB* a){
-	
+	static int contNosAltura = 0;
+    if(!arvb_vazia(a)){
+    	if((a->dir!=NULL && a->esq!=NULL) && (arv_altura(a->esq) == arv_altura(a->dir)))	
+    		contNosAltura++;
+		nos_igual_altura(a->esq);
+    	nos_igual_altura(a->dir);
+	}
+    return contNosAltura;
 }
 
 //TRABALHO: função que compare se duas árvores binárias de busca são iguais.
 int iguais(ArvB* a, ArvB* b){
-	
+	if(!arvb_vazia(a) && !arvb_vazia(b)){
+		iguais(a->esq, b->esq);
+		if(a->info == b->info)
+			return true;
+		else 
+			return false;
+		iguais(a->dir, b->dir);
+	}
 }
