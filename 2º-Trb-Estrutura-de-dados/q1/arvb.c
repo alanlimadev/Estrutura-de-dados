@@ -113,14 +113,18 @@ bool ehPrimo(int numero) {
 
 //TRABALHO: função que retorne a quantidade de folhas que possuem no campo info um número primo.
 int folhas_primos(ArvB* a) {
-    static int contPrimos = 0;
-    if(!arvb_vazia(a)){
-    	folhas_primos(a->esq);
+    if(arvb_vazia(a))
+    	return 0;
+    if(a->esq == NULL && a->dir == NULL){
     	if(ehPrimo(a->info))
-    		contPrimos++;
-    	folhas_primos(a->dir);
+    		return 1;
+    	else
+    		return 0;
 	}
-    return contPrimos;
+	int folhasEsq = folhas_primos(a->esq);
+	int folhasDir = folhas_primos(a->dir);
+    
+    return folhasEsq + folhasDir;
 }
 
 //TRABALHO: função que retorne a quantidade de nós que possuem os dois filhos (campos dir e esq diferentes de NULL).
